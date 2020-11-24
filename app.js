@@ -5,7 +5,13 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 var app        = express();
 
-mongoose.connect("mongodb://localhost/restful_blog_app");
+mongoose.connect("mongodb://localhost/restful_blog_app",{ useNewUrlParser: true, useUnifiedTopology: true },(err)=>{
+    if (err){
+        console.log(err)
+    }else{
+    console.log("Connected to DB")
+    } 
+});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
